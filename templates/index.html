@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Gestión de Servidores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; max-width: 800px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        input[type="text"] { width: 120px; }
+        button { padding: 5px 10px; }
+    </style>
+</head>
+<body>
+    <h1>Estado de los Servidores</h1>
+    <table>
+        <tr>
+            <th>Servidor</th>
+            <th>Estado</th>
+            <th>Usuario</th>
+            <th>Hora</th>
+            <th>Acción</th>
+        </tr>
+        {% for s in servidores %}
+        <tr>
+            <td>{{ s.nombre }}</td>
+            <td>{{ s.estado }}</td>
+            <td>{{ s.usuario }}</td>
+            <td>{{ s.hora }}</td>
+            <td>
+                <form method="POST"
+                      action="{% if s.estado == 'libre' %}{{ url_for('reservar', nombre=s.nombre) }}{% else %}{{ url_for('liberar', nombre=s.nombre) }}{% endif %}"
+                >
+                    <input type="text" name="usuario" placeholder="Tu nombre" required>
+                    <button type="submit">
+                        {% if s.estado == 'libre' %}
+                            Reservar
+                        {% else %}
+                            Liberar
+                        {% endif %}
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
