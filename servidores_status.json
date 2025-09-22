@@ -1,0 +1,20 @@
+[
+  {
+    "nombre": "server1",
+    "estado": "ocupado",
+    "usuario": "Pablo",
+    "hora": "2025-09-22 13:05:11"
+  },
+  {
+    "nombre": "server2",
+    "estado": "libre",
+    "usuario": "",
+    "hora": ""
+  },
+  {
+    "nombre": "server3",
+    "estado": "libre",
+    "usuario": "",
+    "hora": ""
+  }
+]
